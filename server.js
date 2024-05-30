@@ -10,6 +10,7 @@ var urlencodedMiddlware = express.urlencoded();
 
 server.use(urlencodedMiddlware);
 server.use(cors());
+server.use(express.json());
 server.set("port", portServer);
 
 // Charger les variables d'environnement

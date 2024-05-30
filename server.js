@@ -14,7 +14,7 @@ server.use(express.json());
 server.set("port", portServer);
 
 // Charger les variables d'environnement
-//require('dotenv').config();
+require('dotenv').config();
 
 //Initialisation de body-parser
 const bodyParser = require("body-parser").json();
@@ -37,6 +37,8 @@ var pool = mysql.createPool({
 server.post("/checkLicense", bodyParser, function (req, res) {
     var licenseCode = req.body.licenseCode;
 
+    console.log("License : " + licenseCode);
+
     var request = "SELECT validationTime\
                    FROM code\
                    WHERE verificationCode = ?";
@@ -49,6 +51,7 @@ server.post("/checkLicense", bodyParser, function (req, res) {
         }
 
         if (results.length === 0) {
+            console.log("License not found");
             res.sendStatus(404); // Aucun résultat trouvé pour ce code de licence
             return;
         }
@@ -57,20 +60,28 @@ server.post("/checkLicense", bodyParser, function (req, res) {
         var currentTime = new Date();
 
         if (validationTime > currentTime) {
+            console.log("License valide");
             res.sendStatus(200); // Le temps de validation est antérieur à la date actuelle
         } else {
+            console.log("License invalide");
             res.sendStatus(400); // Le temps de validation est postérieur à la date actuelle
         }
     });
 });
 
+server.put("/testPut", bodyParser, function (req, res) {
+    console.log("TestPut");
+    console.log("License : " + req.body.licenseCode);
+    res.sendStatus(200);
+});
+
 server.get("/testGet", bodyParser, function (req, res) {
-    console.log("Get");
+    console.log("TestGet");
     res.sendStatus(200);
 });
 
 server.post("/testPost", bodyParser, function (req, res) {
-    console.log("Post");
+    console.log("TestPost");
     res.sendStatus(200);
 });
 

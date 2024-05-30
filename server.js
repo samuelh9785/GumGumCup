@@ -35,6 +35,8 @@ server.get("/checkLicense", bodyParser, function (req, res) {
                    FROM code\
                    WHERE verificationCode = ?";
 
+    res.sendStatus(200);
+
     pool.query(request, [licenseCode], function (err, results, fields) {
         if (err != null) {
             console.log(err);

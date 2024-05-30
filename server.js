@@ -46,7 +46,7 @@ server.post("/checkLicense", bodyParser, function (req, res) {
     pool.query(request, [licenseCode], function (err, results, fields) {
         if (err != null) {
             console.log(err);
-            res.sendStatus(404);
+            res.sendStatus(500);
             return;
         }
 
@@ -64,7 +64,7 @@ server.post("/checkLicense", bodyParser, function (req, res) {
             res.sendStatus(200); // Le temps de validation n'est pas expiré
         } else {
             console.log("License invalide");
-            res.sendStatus(400); // Le temps de validation est expiré
+            res.sendStatus(498); // Le temps de validation est expiré
         }
     });
 });

@@ -61,6 +61,14 @@ server.post("/checkLicense", bodyParser, function (req, res) {
     });
 });
 
+server.get("/testGet", bodyParser, function (req, res) {
+    res.sendStatus(200);
+});
+
+server.post("/testPost", bodyParser, function (req, res) {
+    res.sendStatus(200);
+});
+
 server.listen(portServer, () => {
   console.log(`Serveur en écoute sur http://localhost:${portServer}`);
 });

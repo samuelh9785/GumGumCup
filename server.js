@@ -3,11 +3,13 @@ var portServer = process.env.PORT || 3000;
 
 //Inititalisation d'express
 const { json } = require("express");
+const cors = require('cors');
 var express = require("express");
 var server = express();
 var urlencodedMiddlware = express.urlencoded();
 
 server.use(urlencodedMiddlware);
+server.use(cors());
 server.set("port", portServer);
 
 // Charger les variables d'environnement

@@ -61,29 +61,14 @@ server.post("/checkLicense", bodyParser, function (req, res) {
 
         if (validationTime > currentTime) {
             console.log("License valide");
-            res.sendStatus(200); // Le temps de validation est antérieur à la date actuelle
+            res.sendStatus(200); // Le temps de validation n'est pas expiré
         } else {
             console.log("License invalide");
-            res.sendStatus(400); // Le temps de validation est postérieur à la date actuelle
+            res.sendStatus(400); // Le temps de validation est expiré
         }
     });
 });
 
-server.put("/testPut", bodyParser, function (req, res) {
-    console.log("TestPut");
-    console.log("License : " + req.body.licenseCode);
-    res.sendStatus(200);
-});
-
-server.get("/testGet", bodyParser, function (req, res) {
-    console.log("TestGet");
-    res.sendStatus(200);
-});
-
-server.post("/testPost", bodyParser, function (req, res) {
-    console.log("TestPost");
-    res.sendStatus(200);
-});
 
 server.listen(portServer, () => {
   console.log(`Serveur en écoute sur http://localhost:${portServer}`);

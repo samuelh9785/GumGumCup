@@ -65,10 +65,12 @@ server.post("/checkLicense", bodyParser, function (req, res) {
 });
 
 server.get("/testGet", bodyParser, function (req, res) {
+    console.log("Get");
     res.sendStatus(200);
 });
 
 server.post("/testPost", bodyParser, function (req, res) {
+    console.log("Post");
     res.sendStatus(200);
 });
 

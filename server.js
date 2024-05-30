@@ -11,7 +11,7 @@ server.use(urlencodedMiddlware);
 server.set("port", portServer);
 
 // Charger les variables d'environnement
-require('dotenv').config();
+//require('dotenv').config();
 
 //Initialisation de body-parser
 const bodyParser = require("body-parser").json();
@@ -52,9 +52,6 @@ server.post("/checkLicense", bodyParser, function (req, res) {
 
         var validationTime = new Date(results[0].validationTime);
         var currentTime = new Date();
-
-        console.log("validationTime" + validationTime);
-        console.log("currentTime" + currentTime);
 
         if (validationTime > currentTime) {
             res.sendStatus(200); // Le temps de validation est antérieur à la date actuelle
